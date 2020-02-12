@@ -125,6 +125,66 @@ namespace ConsoleApp
             }
             return pages;
         }
+      
+       public List<int> ReadPdfFileBeta(string fileName, String searchString)
+        {
+             string Dest = "../../hello.pdf";
+            List<int> pages = new List<int>();
+            if (File.Exists(fileName))
+            {
+                PdfDocument pdfDoc = new PdfDocument(new PdfReader(fileName), new PdfWriter(Dest));
+                PdfCanvas canvas = new PdfCanvas(pdfDoc.GetPage(1).NewContentStreamBefore(),
+                                    pdfDoc.GetPage(1).GetResources(), pdfDoc);
+
+                canvas.SaveState()
+                        .SetFillColor(ColorConstants.YELLOW)
+                        .Rectangle(36, 786, 66, 16)
+                        .Fill();
+
+                pdfDoc.Close();
+                //using (PdfReader pdfReader = new PdfReader(fileName))
+                //    using (PdfDocument pdfDocs = new PdfDocument(new PdfReader(fileName),new PdfWriter(Dest))
+                //    {
+
+
+                //    //for (int page = 1; page <= pdfDoc.GetNumberOfPages(); page++)
+                //    //{
+                //    //    ITextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
+
+                //    //    string currentPageText = PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(page), strategy);
+                //    //    if (currentPageText.Contains(searchString))
+                //    //    {
+
+                //    //        FilteredEventListener listener = new FilteredEventListener();
+                //    //        var strat = listener.AttachEventListener(new CustomTextLocation());
+                //    //        PdfCanvasProcessor processor = new PdfCanvasProcessor(listener);
+                //    //        processor.ProcessPageContent(pdfDoc.GetPage(1));
+
+                //    //        //foreach (var item in strat.objectResult)
+                //    //        //{
+                //    //        //    //item.Text
+                //    //        //}
+                //    //        // The content, placed on a content stream before, will be rendered before the other content
+                //    //        // and, therefore, could be understood as a background (bottom "layer")
+                //    //        //PdfCanvas canvas = new PdfCanvas(pdfDoc.GetPage(page).NewContentStreamBefore(),
+                //    //        //        pdfDoc.GetPage(page).GetResources(), pdfDoc);
+
+                //    //        //canvas.SaveState()
+                //    //        //        .SetFillColor(ColorConstants.YELLOW)
+                //    //        //        .Rectangle(36, 786, 66, 16)
+                //    //        //        .Fill();
+                //    //        //MessageBox.show("Found COLLIN GRADY");
+                //    //    }
+                //    //    else
+                //    //    {
+                //    //        //MessageBox.Show("Could not find COLLIN GRADY");
+                //    //    }
+
+                //    //}
+                //}
+            }
+            return pages;
+        }
 
     }
 }
